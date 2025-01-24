@@ -1,0 +1,61 @@
+<?php
+class ChollosMapper extends DataMapper
+{
+    public static function add(Chollo $chollo)
+    {
+        $st = self::$db->prepare(
+            "insert into Chollos set
+            precio = :precio,
+            nombre = :nombre,
+            descripcion=:descripcion,
+            enlace=:enlace"
+        );
+        $st->execute(array(
+            ':precio' => $chollo->getPrecio(),
+            ':nombre' => $chollo->getNombre(),
+            ':descripcion' => $chollo->getDescripcion(),
+            ':enlace' => $chollo->getEnlace()
+
+
+        ));
+    }
+}
+/*
+<?php
+
+class DataMapper
+{
+    public static $db;
+    
+    public static function init($db)
+    {
+        self::$db = $db;
+    }
+}
+
+class VendorMapper extends DataMapper
+{
+    public static function add($vendor)
+    {
+        $st = self::$db->prepare(
+            "insert into vendors set
+            first_name = :first_name,
+            last_name = :last_name"
+        );
+        $st->execute(array(
+            ':first_name' => $vendor->first_name,
+            ':last_name' => $vendor->last_name
+        ));
+    }
+}
+
+// In your bootstrap
+$db = new PDO(...);
+DataMapper::init($db);
+
+// In your model logic
+$vendor = new Vendor('John', 'Doe');
+VendorMapper::add($vendor);
+
+?>
+*/
