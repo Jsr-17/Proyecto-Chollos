@@ -1,6 +1,6 @@
 <?php
 
-class Chollo
+class Usuario
 {
     public function __construct(
         private int $id,
@@ -10,8 +10,7 @@ class Chollo
         private string $username,
         private string $contrasenya,
         private bool $admin
-    ) {
-    }
+    ) {}
     // Getters
     public function getId(): int
     {
@@ -42,7 +41,7 @@ class Chollo
         return $this->contrasenya;
     }
 
-    public function getAdmin(): string
+    public function getAdmin(): bool
     {
         return $this->admin;
     }
@@ -82,4 +81,3 @@ class Chollo
         $this->admin = $admin;
     }
 }
-
