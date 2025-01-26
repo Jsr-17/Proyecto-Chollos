@@ -1,15 +1,14 @@
 <?php
-
-class Chollo
+//clase encargada de relacionar los tipos de datos con los valores de la base de datos y de las consultas sql 
+class Usuario_Chollo
 {
     public function __construct(
         private int $id,
-        private string $id_usuario,
-        private string $id_chollo,
+        private int $id_usuario,
+        private int $id_chollo,
         private string $fecha,
 
-    ) {
-    }
+    ) {}
 
     // Getters
     public function getId(): int
@@ -17,14 +16,18 @@ class Chollo
         return $this->id;
     }
 
-    public function getId_usuario(): string
+    public function getId_usuario(): int
     {
         return $this->id_usuario;
     }
 
-    public function getId_chollo(): string
+    public function getId_chollo(): int
     {
         return $this->id_chollo;
+    }
+    public function getFecha(): string
+    {
+        return $this->fecha;
     }
 
     // Setters
@@ -33,23 +36,18 @@ class Chollo
         $this->id = $id;
     }
 
-    public function setId_usuario(string $id_usuario): void
+    public function setId_usuario(int $id_usuario): void
     {
         $this->id_usuario = $id_usuario;
     }
 
-    public function setId_chollo(string $id_chollo): void
+    public function setId_chollo(int $id_chollo): void
     {
         $this->id_chollo = $id_chollo;
     }
 
-    public function setDescripcion(string $descripcion): void
+    public function setDescripcion(string $fecha): void
     {
-        $this->descripcion = $descripcion;
-    }
-
-    public function setEnlace(string $enlace): void
-    {
-        $this->enlace = $enlace;
+        $this->fecha = $fecha;
     }
 }

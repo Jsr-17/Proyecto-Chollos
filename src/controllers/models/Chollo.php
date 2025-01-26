@@ -1,5 +1,5 @@
 <?php
-
+//Modelo de datos que se basarán todos los chollos o productos de la página web
 class Chollo
 {
     public function __construct(
@@ -8,8 +8,7 @@ class Chollo
         private string $nombre,
         private string $descripcion,
         private string $enlace
-    ) {
-    }
+    ) {}
 
     // Getters
     public function getId(): int
@@ -62,5 +61,4 @@ class Chollo
     {
         $this->enlace = $enlace;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
-include "./models/Usuario.php";
+include "./models/Usuario_Chollos.php";
 include "./models/DataMapper.php";
-include "./models/UsuariosMapper.php";
+include "./models/Usuario_ChollosMapper.php";
 
 try {
     //Esta variable se encarga de hacer la conexión con la base de datos 
@@ -29,7 +29,3 @@ el modelado de los datos y su consecuente mapeador el cual es sino una clase con
 código*/
 /*Por que hacer el codigo de esta forma? mucho mas sencillo el acceder a la forma de la base de datos y sus modificaciones y mantenible con el tiempo
 */
-
-$usuarios = new Usuario("1", "9023", "jau", "aaaaaa@gmail.com", "aaaaertwesda", "12346", false);
-
-UsuariosMapper::updateAll($usuarios);

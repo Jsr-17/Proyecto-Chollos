@@ -1,5 +1,5 @@
 <?php
-
+//Clase encargada de exportar de manera estática todos los metodos que son relacionados con las consultas a la tabla de chollos de la base de datos
 class ChollosMapper extends DataMapper
 {
 
@@ -47,14 +47,15 @@ class ChollosMapper extends DataMapper
             ":enlace" => $chollo->getEnlace()
         ]);
     }
-    public static function updateOne(Chollo $chollo, $columna)
-    {
-        //-> es la funcion de la clase PDO
-        $el = self::$db->prepare("UPDATE Chollos SET  " . (string)$columna . " = :" . (string) $columna . " WHERE id = :id");
 
+    public static function updateOne(Chollo $chollo, $columna, $valor)
+    {
+        $el = self::$db->prepare(
+            "UPDATE Chollos SET " . (string)$columna . " =:value  where id=:id"
+        );
         $el->execute([
             ":id" => $chollo->getId(),
-            ":" . $columna => $chollo->{'get' . ucfirst($columna)}()
+            ":value" => $valor
         ]);
     }
     public static function selectAll()

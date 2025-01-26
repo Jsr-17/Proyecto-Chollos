@@ -1,5 +1,5 @@
 <?php
-
+//clase encargada de realizar un modelo de datos que se relaciona con la forma diseñada en la base de datos con el objetivo de mayor fidelidad de tipos
 class Usuario
 {
     public function __construct(
