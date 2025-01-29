@@ -1,5 +1,5 @@
 import React from "react";
-import { ContenedorComponent } from "./ContenedorComponent/ContenedorComponent";
+import { ContenedorComponent } from "./components/ContenedorComponent/ContenedorComponent";
 
 export const LandingPage = () => {
   return (

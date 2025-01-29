@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router";
-import { RegisterPage } from "../views/registerPage/RegisterPage";
-import { LoginPage } from "../views/loginPage/LoginPage";
+import { RegisterPage } from "../views/authPage/registerPage/RegisterPage";
+import { LoginPage } from "../views/authPage/loginPage/LoginPage";
 
 export const RouterAuth = () => {
   return (

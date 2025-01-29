@@ -1,4 +1,5 @@
 import React from "react";
+import img from "../../../../../assets/imgEj.webp";
 
 export const ContenedorComponent = () => {
   return (
@@ -6,7 +7,7 @@ export const ContenedorComponent = () => {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -19,7 +20,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -32,7 +33,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -44,7 +45,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -57,7 +58,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -70,7 +71,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -83,7 +84,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -95,7 +96,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -108,7 +109,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -121,7 +122,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -134,7 +135,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">
@@ -146,7 +147,7 @@ export const ContenedorComponent = () => {
         </div>
         <div className="col">
           <div className="card">
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={img} className="card-img-top  img-fluid" alt={img} />
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export const HeaderComponent = () => {
   return (
@@ -8,9 +9,9 @@ export const HeaderComponent = () => {
         data-bs-theme="dark"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to={"/"}>
             Tienda de Chollos
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -25,15 +26,14 @@ export const HeaderComponent = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to={"/"}>
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item"></li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
-                  href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -42,25 +42,25 @@ export const HeaderComponent = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to={"/userChollos"}>
                       Ver mis Chollos
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to={"/newChollos"}>
                       Nuevo Chollo
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to={"/deleteChollos"}>
                       Borrar Chollos
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to={"/modifyChollos"}>
                       Modificar Chollos
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
