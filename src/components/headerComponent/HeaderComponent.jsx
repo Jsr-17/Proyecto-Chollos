@@ -74,9 +74,9 @@ export const HeaderComponent = () => {
               />
             </form>
 
-            <button className="btn btn-outline-secondary" type="submit">
+            <Link className="btn btn-outline-secondary" to={"/auth/login"}>
               Login
-            </button>
+            </Link>
             <button className="btn btn-outline-secondary mx-2" type="submit">
               Ver Carrito
             </button>
