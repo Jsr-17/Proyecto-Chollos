@@ -42,52 +42,13 @@
 
     <script>
       const formulario = document.getElementById("form");
-      /*
-                  //como lo que estoy realizando es una consulta a la base de datos y a un servido necesito usar la asincronia
-                  const hacerFetch = async () => {
-                    //Para recoger los datos en PHP desde la variable Global $_Post[] necesito crear con los datos del cliente un objeto de URL
-                    const datos = new URLSearchParams();
-                    //Este método se encarga de crear cada uno de los POST con los datos que definamos en este caso e optado por utilizar datos simples de prueba
-                    datos.append("id", 0);
-                    datos.append("edad", 25);
-                    datos.append("nombre", "Juan");
-                    datos.append("correo", "juan@example.com");
-                    datos.append("username", "juan123");
-                    datos.append("contrasenya", "123456");
-                    datos.append("admin", true);
 
-                    try {
-                      //El fetch al hacer un post cambia considerablemente conforme lo hace al get
-
-                      const response = await fetch(
-                        //ruta donde esta el archivo PHP al cual voy hacer una consulta
-                        "http://localhost:8080/usuario/addUsuario.php",
-                        {
-                          //método post Por que yo espero recibir en el back-end un POST
-                          method: "POST",
-                          //aqui se configura el tipo de dato que vamos a enviar en este caso en concreto son datos planos pero de normal vendrian de un formulario
-                          //por eso uso /x-www-form-urlencoded
-                          headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                          },
-                          //esto de aquí hace referencia a los datos que voy a enviar
-                          body: datos.toString(),
-                        }
-                      );
-
-                      const responseText = await response.text();
-                      console.log("Respuesta cruda:", responseText);
-                    } catch (error) {
-                      console.log(error);
-                    }
-                  };
-      */
-      /*
-      const hacerFetchRM = async () => {
-
+      //como lo que estoy realizando es una consulta a la base de datos y a un servido necesito usar la asincronia
+      const hacerFetch = async () => {
+        //Para recoger los datos en PHP desde la variable Global $_Post[] necesito crear con los datos del cliente un objeto de URL
         const datos = new URLSearchParams();
-
-        datos.append("id", 5);
+        //Este método se encarga de crear cada uno de los POST con los datos que definamos en este caso e optado por utilizar datos simples de prueba
+        datos.append("id", 0);
         datos.append("edad", 25);
         datos.append("nombre", "Juan");
         datos.append("correo", "juan@example.com");
@@ -96,133 +57,173 @@
         datos.append("admin", true);
 
         try {
-          const request = await fetch(
-            "http://localhost:8080/usuario/rmUsuario.php",
+          //El fetch al hacer un post cambia considerablemente conforme lo hace al get
+
+          const response = await fetch(
+            //ruta donde esta el archivo PHP al cual voy hacer una consulta
+            "http://localhost:8080/usuario/addUsuario.php",
             {
-                //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
+              //método post Por que yo espero recibir en el back-end un POST
               method: "POST",
+              //aqui se configura el tipo de dato que vamos a enviar en este caso en concreto son datos planos pero de normal vendrian de un formulario
+              //por eso uso /x-www-form-urlencoded
               headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
               },
+              //esto de aquí hace referencia a los datos que voy a enviar
               body: datos.toString(),
             }
           );
-          const data = await request.text();
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };*/
-      /*const hacerFetchAll = async () => {
-        const resp = await fetch(
-          "http://localhost:8080/usuario/selectAllUsuario.php"
-        );
-        const data = await resp.json();
-        console.log(data);
-      };*/
-      /*
-      const hacerFetch = async () => {
-        const datos = new URLSearchParams();
-        datos.append("id", 15);
 
-        const resp = await fetch(
-          "http://localhost:8080/usuario/selectOneUsuario.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: datos.toString(),
-          }
-        );
-
-        const data = await resp.json();
-        console.log(data);
-      };*/
-      /* const hacerFetch = async () => {
-        //error de cors puede dar debido a que hay un espacio en el archivo php
-        const datos = new URLSearchParams();
-        datos.append("columna", "username");
-        datos.append("valor", "carlos");
-
-        const resp = await fetch(
-          "http://localhost:8080/usuario/selectUsuarioby.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: datos.toString(),
-          }
-        );
-
-        const data = await resp.json();
-        console.log(data);
-      };*/
-      /*
-      const hacerFetch = async () => {
-        const datos = new URLSearchParams();
-
-        datos.append("id", 5);
-        datos.append("edad", 35);
-        datos.append("nombre", "Veronica");
-        datos.append("correo", "Veronica@example.com");
-        datos.append("username", "VeronicaGuapa");
-        datos.append("contrasenya", "123456");
-        datos.append("admin", false);
-
-        try {
-          const request = await fetch(
-            "http://localhost:8080/usuario/updateAllOfUser.php",
-            {
-              //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
-              method: "POST",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-              },
-              body: datos.toString(),
-            }
-          );
-          const data = await request.text();
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };*/
-
-      /*const hacerFetch = async () => {
-        const datos = new URLSearchParams();
-
-        datos.append("id", 5);
-        datos.append("edad", 35);
-        datos.append("nombre", "Veronica");
-        datos.append("correo", "Veronica@example.com");
-        datos.append("username", "VeronicaGuapa");
-        datos.append("contrasenya", "123456");
-        datos.append("admin", false);
-
-        datos.append("columna", "edad");
-        datos.append("valor", "20");
-
-        try {
-          const request = await fetch(
-            "http://localhost:8080/usuario/updateOneUsuario.php",
-            {
-              //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
-              method: "POST",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-              },
-              body: datos.toString(),
-            }
-          );
-          const data = await request.text();
-          console.log(data);
+          const responseText = await response.text();
+          console.log("Respuesta cruda:", responseText);
         } catch (error) {
           console.log(error);
         }
       };
-      */
+
+      /*
+           const hacerFetchRM = async () => {
+
+             const datos = new URLSearchParams();
+
+             datos.append("id", 5);
+             datos.append("edad", 25);
+             datos.append("nombre", "Juan");
+             datos.append("correo", "juan@example.com");
+             datos.append("username", "juan123");
+             datos.append("contrasenya", "123456");
+             datos.append("admin", true);
+
+             try {
+               const request = await fetch(
+                 "http://localhost:8080/usuario/rmUsuario.php",
+                 {
+                     //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
+                   method: "POST",
+                   headers: {
+                     "Content-Type": "application/x-www-form-urlencoded",
+                   },
+                   body: datos.toString(),
+                 }
+               );
+               const data = await request.text();
+               console.log(data);
+             } catch (error) {
+               console.log(error);
+             }
+           };*/
+      /*const hacerFetchAll = async () => {
+             const resp = await fetch(
+               "http://localhost:8080/usuario/selectAllUsuario.php"
+             );
+             const data = await resp.json();
+             console.log(data);
+           };*/
+
+      /*     const hacerFetch = async () => {
+             const datos = new URLSearchParams();
+             datos.append("id", 1);
+
+             const resp = await fetch(
+               "http://localhost:8080/usuario/selectOneUsuario.php",
+               {
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/x-www-form-urlencoded",
+                 },
+                 body: datos.toString(),
+               }
+             );
+
+             const data = await resp.json();
+             console.log(data);
+           };*/
+
+      /* const hacerFetch = async () => {
+             //error de cors puede dar debido a que hay un espacio en el archivo php
+             const datos = new URLSearchParams();
+             datos.append("columna", "username");
+             datos.append("valor", "carlos");
+
+             const resp = await fetch(
+               "http://localhost:8080/usuario/selectUsuarioby.php",
+               {
+                 method: "POST",
+                 headers: {
+                   "Content-Type": "application/x-www-form-urlencoded",
+                 },
+                 body: datos.toString(),
+               }
+             );
+
+             const data = await resp.json();
+             console.log(data);
+           };*/
+      /*
+           const hacerFetch = async () => {
+             const datos = new URLSearchParams();
+
+             datos.append("id", 5);
+             datos.append("edad", 35);
+             datos.append("nombre", "Veronica");
+             datos.append("correo", "Veronica@example.com");
+             datos.append("username", "VeronicaGuapa");
+             datos.append("contrasenya", "123456");
+             datos.append("admin", false);
+
+             try {
+               const request = await fetch(
+                 "http://localhost:8080/usuario/updateAllOfUser.php",
+                 {
+                   //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
+                   method: "POST",
+                   headers: {
+                     "Content-Type": "application/x-www-form-urlencoded",
+                   },
+                   body: datos.toString(),
+                 }
+               );
+               const data = await request.text();
+               console.log(data);
+             } catch (error) {
+               console.log(error);
+             }
+           };*/
+
+      /*const hacerFetch = async () => {
+             const datos = new URLSearchParams();
+
+             datos.append("id", 5);
+             datos.append("edad", 35);
+             datos.append("nombre", "Veronica");
+             datos.append("correo", "Veronica@example.com");
+             datos.append("username", "VeronicaGuapa");
+             datos.append("contrasenya", "123456");
+             datos.append("admin", false);
+
+             datos.append("columna", "edad");
+             datos.append("valor", "20");
+
+             try {
+               const request = await fetch(
+                 "http://localhost:8080/usuario/updateOneUsuario.php",
+                 {
+                   //Importante POST debe de ir en Mayúscula si sale error cannot fetch on window significa que falta el metodo que vamos a usar pa la peti
+                   method: "POST",
+                   headers: {
+                     "Content-Type": "application/x-www-form-urlencoded",
+                   },
+                   body: datos.toString(),
+                 }
+               );
+               const data = await request.text();
+               console.log(data);
+             } catch (error) {
+               console.log(error);
+             }
+           };
+           */
       formulario.addEventListener("submit", (e) => {
         e.preventDefault();
         hacerFetch();

@@ -7,8 +7,8 @@ header("Access-Control-Allow-Origin: *");
 
 try {
 
-    $columna = $_POST['columna'] ?? null;
-    $valor = $_POST['valor'] ?? null;
+    $columna = $_POST['columna'];
+    $valor = $_POST['valor'];
 
     //conexiones con las bases de datos 
     $db = new PDO("mysql:host=db;dbname=Chollos_Database;charset=utf8", "admin", "123456");

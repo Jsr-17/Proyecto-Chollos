@@ -16,11 +16,17 @@ try {
         $_POST["correo"],
         $_POST["username"],
         $_POST["contrasenya"],
-        (bool) $_POST["admin"]
+        false
     );
     //funcion statcia que se encarga mediante el uso de un modelo de datos actualizar los datos del registro
     UsuariosMapper::updateAll($usuario);
-    echo "consulta realizada";
+
+    $response = array(
+        "status" => "success",
+        "message" => "El usuario ha sido actualizado correctamente."
+    );
+
+    echo json_encode($response);
 } catch (Throwable $th) {
     throw $th;
 }

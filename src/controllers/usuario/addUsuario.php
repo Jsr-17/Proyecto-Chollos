@@ -6,18 +6,16 @@ include "../models/UsuariosMapper.php";
 
 try {
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: Content-Type");
-    header("Content-Type: application/json");
+    header('Content-Type: application/json');
 
 
-
-    $id = $_POST['id'];
     $edad = $_POST['edad'];
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
     $username = $_POST['username'];
     $contrasenya = $_POST['contrasenya'];
-    $admin = $_POST['admin'];
+
+
 
 
     //mediante el post se creara el usuario automaticamente
@@ -28,7 +26,7 @@ try {
         $correo,
         $username,
         $contrasenya,
-        (bool)$admin
+        false
     );
 
 
@@ -51,7 +49,14 @@ try {
     //llamaremos al metodo definido para añadir un usuario
 
     UsuariosMapper::add($usuario);
-    echo "consulta realizada";
+
+    $response = array(
+        "status" => "success",
+        "message" => "El usuario ha sido creado correctamente."
+    );
+
+    // Convertir el array a JSON y devolverlo
+    echo json_encode($response);
 
     //cerrar las diferentes variables de la base de datos
 
