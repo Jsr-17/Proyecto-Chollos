@@ -42,7 +42,7 @@
 
     <script>
       const formulario = document.getElementById("form");
-
+      /*
       //como lo que estoy realizando es una consulta a la base de datos y a un servido necesito usar la asincronia
       const hacerFetch = async () => {
         //Para recoger los datos en PHP desde la variable Global $_Post[] necesito crear con los datos del cliente un objeto de URL
@@ -80,7 +80,7 @@
         } catch (error) {
           console.log(error);
         }
-      };
+      };*/
 
       /*
            const hacerFetchRM = async () => {
@@ -113,13 +113,13 @@
                console.log(error);
              }
            };*/
-      /*const hacerFetchAll = async () => {
-             const resp = await fetch(
-               "http://localhost:8080/usuario/selectAllUsuario.php"
-             );
-             const data = await resp.json();
-             console.log(data);
-           };*/
+      const hacerFetch = async () => {
+        const resp = await fetch(
+          "http://localhost:8080/usuarioChollo/selectAllProcediments.php"
+        );
+        const data = await resp.json();
+        console.log(data);
+      };
 
       /*     const hacerFetch = async () => {
              const datos = new URLSearchParams();

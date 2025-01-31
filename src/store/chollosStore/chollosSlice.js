@@ -1,35 +1,56 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  obtenerChollos,
+  insertarChollo,
+  seleccionarChollo,
+  modificarChollo,
+  eliminarChollo,
+} from "./thunk";
 
 //este método solicita al controlador de php la información createAsyncThunk sirve para ejecutar una funcion y relacionar el fetch
 //con la nomenclatura se exporta para poder ser utilizada en otras partes de los proyectos muy importante la exportación
 
-export const obtenerChollos = createAsyncThunk(
-  "chollos/obtenerChollos",
-  //Función anónima encargada de realizar la función fetch
-  async () => {
-    const response = await fetch(
-      "http://localhost:8080/usuario/selectAllUsuario.php"
-    );
-    return response.json();
-  }
-);
+const initialState = { chollos: [], loading: false, chollo: null };
+
+//para una mayor limpieza de codigo y eliminar los casos en el estado del loading creo estas dos funciones;
+const setLoading = (state) => {
+  state.loading = true;
+};
+
+const unsetLoading = (state) => {
+  state.loading = false;
+};
 
 const chollosSlice = createSlice({
   name: "chollos",
-  initialState: { chollos: [], loading: false },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(obtenerChollos.pending, (state) => {
-        state.loading = true;
-      })
       .addCase(obtenerChollos.fulfilled, (state, action) => {
         state.chollos = action.payload;
-        state.loading = false;
+        unsetLoading(state);
       })
-      .addCase(obtenerChollos.rejected, (state) => {
-        state.loading = false;
-      });
+      .addCase(insertarChollo.fulfilled, (state, action) => {
+        state.chollos = action.payload;
+        unsetLoading(state);
+      })
+      .addCase(seleccionarChollo.fulfilled, (state, action) => {
+        state.chollo = action.payload;
+        unsetLoading(state);
+      })
+      .addCase(modificarChollo.fulfilled, (state, action) => {
+        state.chollo = action.payload;
+        unsetLoading(state);
+      })
+      .addCase(eliminarChollo.fulfilled, (state, action) => {
+        state.chollo = action.payload;
+        unsetLoading(state);
+      })
+
+      //manejo de casos de fallo automáticamente con las funciones de arriba
+      .addMatcher((action) => action.type.endsWith("/pending"), setLoading)
+      .addMatcher((action) => action.type.endsWith("/rejected"), unsetLoading);
   },
 });
 

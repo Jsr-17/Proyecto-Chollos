@@ -1,5 +1,5 @@
-
 <?php
+include "DataMapper.php";
 //Clase encargada de realizar todas las peticiones a la tabla intermedia de la base de datos de manera estática
 class Usuario_ChollosMapper extends DataMapper
 {
@@ -20,13 +20,13 @@ class Usuario_ChollosMapper extends DataMapper
     }
 
     //funcion encargada de borrar los datos de un registro de la tabla intermedia en concreto 
-    public static function remove(Usuario_Chollo $usuario_Chollo)
+    public static function remove($id)
     {
         $el = self::$db->prepare(
             "Delete from Usuario_Chollo where id=:id"
         );
         $el->execute([
-            ":id" => $usuario_Chollo->getId()
+            ":id" => $id
         ]);
     }
     //funcion encargadad de actializar todos los campos o pisar los datos de un registro en concreto
@@ -39,34 +39,56 @@ class Usuario_ChollosMapper extends DataMapper
     }
 
     //Funcion encargada de modificar los datos de un registro de la tabla intermdedia y colocar un valor predefinido en el objeto
-    public static function updateOne(Usuario_Chollo $usuario_Chollo, $columna)
+    public static function updateOne($id, $columna, $valor)
     {
-        $el = self::$db->prepare("Update Usuario_Chollo SET " . $columna . " =:" . $columna . " where  id =:id ");
+        $el = self::$db->prepare("Update Usuario_Chollo SET " . $columna . " =:valor where  id =:id ");
         $el->execute([
-            [":id" => $usuario_Chollo->getId(), ":columna" => $usuario_Chollo->{'get' . ucfirst($columna)}()]
+            [":id" => $id, ":columna" => $columna, ":valor" => $valor]
         ]);
     }
 
-    //Funcion que realiza la selección de todos los datos y retorna un array asociativo de los datos de la tabla intermdedia
-    public static function selectAll()
+    public static function selectOneUserProductsData($id)
     {
-        $el = self::$db->prepare("Select * from Usuario_Chollo");
+        $el = self::$db->prepare("SELECT 
+    Usuario_Chollo.id_usuario,
+    Usuario_Chollo.id_chollo,
+    Usuario.edad,
+    Usuario.nombre AS nombre_Usuario,
+    Usuario.correo,
+    Usuario.username,
+    Usuario.admin,
+    Chollo.precio,
+    Chollo.nombre AS nombre_Chollo,
+    Chollo.descripcion
+FROM 
+    Usuario_Chollo
+INNER JOIN 
+    Usuario ON Usuario_Chollo.id_usuario = Usuario.id
+INNER JOIN 
+    Chollo ON Usuario_Chollo.id_chollo = Chollo.id WHERE Usuario.id= :id ;");
+        $el->execute([":id" => $id]);
+        return $el->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function selectUsersProductsData()
+    {
+        $el = self::$db->prepare("SELECT 
+    Usuario_Chollo.id_usuario,
+    Usuario_Chollo.id_chollo,
+    Usuario.edad,
+    Usuario.nombre AS nombre_Usuario,
+    Usuario.correo,
+    Usuario.username,
+    Usuario.admin,
+    Chollo.precio,
+    Chollo.nombre AS nombre_Chollo,
+    Chollo.descripcion
+FROM 
+    Usuario_Chollo
+INNER JOIN 
+    Usuario ON Usuario_Chollo.id_usuario = Usuario.id
+INNER JOIN 
+    Chollo ON Usuario_Chollo.id_chollo = Chollo.id ;");
         $el->execute();
-        return $el->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    //funcion que realiza la seleccion de un registro en concreto de la tabla
-    public static function selectOne($value)
-    {
-        $el = self::$db->prepare("Select * from Usuario_Chollo where id=:id");
-        $el->execute([":id" => $value]);
-        return $el->fetchAll(PDO::FETCH_ASSOC);
-    }
-    //funcino que realiza una seleccion de un registro en concreto filtrado por los campos que solicite el usuario dentro del objketo
-    public static function selectOneBy($columna, $value)
-    {
-        $el = self::$db->prepare("Select * from Usuario_Chollo where " . $columna . " = :value");
-        $el->execute([":value" => $value]);
         return $el->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
+import { iniciarSesion } from "../../../store/usuarioStore/thunk";
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+  const { usuario } = useSelector((state) => state.usuarios);
+
+  const user = {
+    username: "jose",
+    contrasenya: "12345",
+  };
+  useEffect(() => {
+    dispatch(iniciarSesion(user));
+  }, []);
+
+  console.log(usuario);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
