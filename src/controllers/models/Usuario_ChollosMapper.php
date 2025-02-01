@@ -47,6 +47,8 @@ class Usuario_ChollosMapper extends DataMapper
         ]);
     }
 
+    //funcion que selecciona una serie de tablas de la base de datos con el objetivo de relacionar la informacion de ellas 
+    //con un único usuario
     public static function selectOneUserProductsData($id)
     {
         $el = self::$db->prepare("SELECT 
@@ -69,6 +71,10 @@ INNER JOIN
         $el->execute([":id" => $id]);
         return $el->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    //Seleccion de varias tablas donde se contextualiza toda la informacion de todos los datos 
+
     public static function selectUsersProductsData()
     {
         $el = self::$db->prepare("SELECT 

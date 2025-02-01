@@ -24,7 +24,8 @@ try {
     if ($user) {
         $response = array(
             "status" => "success",
-            "message" => "Usuario autenticado correctamente."
+            "message" => "Usuario autenticado correctamente.",
+            "user" => $user
         );
     } else {
         $response = array(

@@ -14,6 +14,8 @@ export const LandingPage = () => {
   //const dispatch = useDispatch();
   //esta funcion se encarga de seleccionar del proveedor del contexto el dato  que vamos a utilizar
   //const { listData, data, loading } = useSelector((state) => state.user_chollo);
+  const usuarioSesion = useSelector((state) => state.usuarios.usuarioSesion);
+  console.log(usuarioSesion);
 
   return (
     <div>

@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+//funcion que hace una petición al controlador trayendo al contexto todos los usuarios existentes en la base de datos
 export const obtenerTodosUsuarios = createAsyncThunk(
   "usuarios/obtenerTodosUsuarios",
   async () => {
@@ -10,6 +10,7 @@ export const obtenerTodosUsuarios = createAsyncThunk(
   }
 );
 
+//Funcion que trae al contexto la información del usuario elegido dentro del contexto
 export const obtenerUsuarioId = createAsyncThunk(
   "usuarios/obtenerUsuarioId",
   async (id) => {
@@ -30,6 +31,8 @@ export const obtenerUsuarioId = createAsyncThunk(
     return resp.json();
   }
 );
+
+//esta funcion se encarga de enviar un post con los datos de un usuario que se registra en la aplicacion al controlador
 export const crearUsuario = createAsyncThunk(
   "usuarios/crearUsuario",
   async ({ edad, nombre, email, usuario, pass }) => {
@@ -51,7 +54,7 @@ export const crearUsuario = createAsyncThunk(
     return resp.json();
   }
 );
-
+//funcion encargada de eliminar los datos de un usuario mandando al controlador el id del usuario a eliminar
 export const eliminarUsuario = createAsyncThunk(
   "usuarios/eliminarUsuario",
   async (id) => {
@@ -69,6 +72,8 @@ export const eliminarUsuario = createAsyncThunk(
     return resp.json();
   }
 );
+//funcion encargada de seleccionar un usuario por una serie de condiciones enviando la columna y el valor por el que selecciona al
+//controlador hacia la base de datos
 export const seleccionUsuarioSi = createAsyncThunk(
   "usuarios/seleccionUsuarioPor",
   async ({ columna, valor }) => {
@@ -90,7 +95,7 @@ export const seleccionUsuarioSi = createAsyncThunk(
     return resp.json();
   }
 );
-
+//funcion que modifica la informacion de un usuario recibe el id del usuario y los datos a modificar
 export const modificarUsuario = createAsyncThunk(
   "usuarios/modificarUsuario",
   async ({ id, edad, nombre, email, usuario, pass }) => {
@@ -116,14 +121,13 @@ export const modificarUsuario = createAsyncThunk(
     return resp.json();
   }
 );
-
+//Duncion encargada de mandar al controlador la informacion de las credenciales de un usuario y recibir la respuesta con los datos
 export const iniciarSesion = createAsyncThunk(
   "usuarios/inicioSesion",
   async ({ username, contrasenya }) => {
     const data = new URLSearchParams();
     data.append("username", username);
     data.append("contrasenya", contrasenya);
-    console.log(...data);
     const res = await fetch("http://localhost:8080/usuario/inicioSesion.php", {
       method: "POST",
       headers: {
@@ -134,3 +138,9 @@ export const iniciarSesion = createAsyncThunk(
     return res.json();
   }
 );
+//esta funcion almacena en el contexto de la aplicacion el id del usuario que está logeado
+export const sesionUsuario = createAction("usuarios/usuarioSesion", (id) => {
+  return {
+    payload: { id },
+  };
+});

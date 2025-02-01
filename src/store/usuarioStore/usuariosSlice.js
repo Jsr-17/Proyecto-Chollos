@@ -8,9 +8,15 @@ import {
   seleccionUsuarioSi,
   eliminarUsuario,
   iniciarSesion,
+  sesionUsuario,
 } from "./thunk";
 
-const initialState = { usuarios: [], loading: false, usuario: null };
+const initialState = {
+  usuarios: [],
+  loading: false,
+  usuario: null,
+  usuarioSesion: null,
+};
 
 const setLoading = (state) => {
   state.loading = true;
@@ -53,6 +59,9 @@ const usuarioSlice = createSlice({
       .addCase(iniciarSesion.fulfilled, (state, action) => {
         state.usuario = action.payload;
         unsetLoading(state);
+      })
+      .addCase(sesionUsuario, (state, action) => {
+        state.usuarioSesion = action.payload.id;
       })
 
       .addMatcher((action) => action.type.endsWith("/pending"), setLoading)

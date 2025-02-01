@@ -5,6 +5,7 @@ import { LoginPage } from "../views/authPage/loginPage/LoginPage";
 
 export const RouterAuth = () => {
   return (
+    //las rutas públicas las cuales tienen el objetivo de mostrar los componentes tanto para iniciar sesion como para logearse
     <Routes>
       <Route path="login" element={<LoginPage></LoginPage>}></Route>
       <Route path="register" element={<RegisterPage></RegisterPage>}></Route>

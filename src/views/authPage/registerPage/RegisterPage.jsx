@@ -1,29 +1,6 @@
 import React, { useState } from "react";
 
 export const RegisterPage = () => {
-  const [formData, setFormData] = useState({
-    edad: "",
-    nombre: "",
-    correo: "",
-    username: "",
-    contrasenya: "",
-    admin: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Datos enviados:", formData);
-    // Aquí puedes enviar los datos al backend
-  };
-
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div
