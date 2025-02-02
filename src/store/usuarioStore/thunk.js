@@ -35,13 +35,13 @@ export const obtenerUsuarioId = createAsyncThunk(
 //esta funcion se encarga de enviar un post con los datos de un usuario que se registra en la aplicacion al controlador
 export const crearUsuario = createAsyncThunk(
   "usuarios/crearUsuario",
-  async ({ edad, nombre, email, usuario, pass }) => {
+  async ({ edad, nombre, correo, username, contrasenya }) => {
     const datos = new URLSearchParams();
     datos.append("edad", edad);
     datos.append("nombre", nombre);
-    datos.append("correo", email);
-    datos.append("username", usuario);
-    datos.append("contrasenya", pass);
+    datos.append("correo", correo);
+    datos.append("username", username);
+    datos.append("contrasenya", contrasenya);
 
     const resp = await fetch("http://localhost:8080/usuario/addUsuario.php", {
       method: "POST",
@@ -80,7 +80,6 @@ export const seleccionUsuarioSi = createAsyncThunk(
     const datos = new URLSearchParams();
     datos.append("columna", columna);
     datos.append("valor", valor);
-    console.log(...datos);
 
     const resp = await fetch(
       "http://localhost:8080/usuario/selectUsuarioby.php",

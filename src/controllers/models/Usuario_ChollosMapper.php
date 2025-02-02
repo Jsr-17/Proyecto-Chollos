@@ -28,6 +28,14 @@ class Usuario_ChollosMapper extends DataMapper
         $el->execute([
             ":id" => $id
         ]);
+        if ($el == 0) {
+            $response = array(
+                "status" => "error",
+                "message" => "El ID proporcionado no existe."
+            );
+            echo json_encode($response);
+            exit;
+        }
     }
     //funcion encargadad de actializar todos los campos o pisar los datos de un registro en concreto
     public static function updateAll(Usuario_Chollo $usuario_Chollo): void
@@ -52,6 +60,7 @@ class Usuario_ChollosMapper extends DataMapper
     public static function selectOneUserProductsData($id)
     {
         $el = self::$db->prepare("SELECT 
+        Usuario_Chollo.id,
     Usuario_Chollo.id_usuario,
     Usuario_Chollo.id_chollo,
     Usuario.edad,
@@ -78,6 +87,7 @@ INNER JOIN
     public static function selectUsersProductsData()
     {
         $el = self::$db->prepare("SELECT 
+        Usuario_Chollo.id,
     Usuario_Chollo.id_usuario,
     Usuario_Chollo.id_chollo,
     Usuario.edad,

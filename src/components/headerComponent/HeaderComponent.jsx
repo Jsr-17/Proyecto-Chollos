@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
 
 export const HeaderComponent = () => {
+  const { usuarioSesion } = useSelector((state) => state.usuarios);
+
+  let existe = !!localStorage.getItem("usuario");
+
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const handleMobile = ({ currentTarget: { innerWidth } }) => {
+      innerWidth > 995 ? setMobile(false) : setMobile(true);
+    };
+    window.addEventListener("resize", handleMobile);
+
+    return () => window.removeEventListener("resize", handleMobile);
+  }, [mobile]);
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    window.location.reload();
+  };
+
   return (
     <>
       <nav
@@ -31,55 +51,66 @@ export const HeaderComponent = () => {
                 </Link>
               </li>
               <li className="nav-item"></li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Gestion de Mis Chollos
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to={"/userChollos"}>
-                      Ver mis Chollos
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to={"/newChollos"}>
-                      Nuevo Chollo
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to={"/deleteChollos"}>
-                      Borrar Chollos
-                    </Link>
-                  </li>
 
-                  <li>
-                    <Link className="dropdown-item" to={"/modifyChollos"}>
-                      Modificar Chollos
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+              {(existe || usuarioSesion) && (
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Gestion de Mis Chollos
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item" to={"/userChollos"}>
+                        Ver mis Chollos
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to={"/newChollos"}>
+                        Nuevo Chollo
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to={"/deleteChollos"}>
+                        Borrar Chollos
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              )}
             </ul>
-            <form className="d-flex w-50 mb-1" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-            </form>
-
-            <Link className="btn btn-outline-secondary" to={"/auth/login"}>
-              Login
-            </Link>
-            <button className="btn btn-outline-secondary mx-2" type="submit">
+            {!mobile && (
+              <form className="d-flex w-25 mb-1" role="search">
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </form>
+            )}
+            <button
+              className="btn btn-outline-secondary mx-2"
+              type="button"
+              onClick={() => console.log(usuarioSesion)}
+            >
               Ver Carrito
             </button>
+            {!existe && !usuarioSesion ? (
+              <Link className="btn btn-outline-secondary" to="/auth/login">
+                Login
+              </Link>
+            ) : (
+              <Link
+                className="btn btn-outline-secondary"
+                onClick={handleLogout}
+              >
+                Logout
+              </Link>
+            )}
           </div>
         </div>
       </nav>

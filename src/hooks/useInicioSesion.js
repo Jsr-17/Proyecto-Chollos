@@ -48,12 +48,16 @@ export const useInicioSesion = () => {
           //En el caso de que haya fallado modificamos el state  a fallado para informar al usuario de un error de credenciales
           setIsAuthenticated(true);
         } else {
-          //Aquí el usuario ha colocado correctamente sus credenciales
-          navigate("/");
-          //saco de la variable del contexto el id del usuario
-          const { id } = usuario.user;
-          //almaceno la variable con el id del usuario con el objetivo de presentarle la informacion personalizada
-          dispatch(sesionUsuario(id));
+          if (usuario.user != undefined) {
+            console.log(usuario);
+            //Aquí el usuario ha colocado correctamente sus credenciales
+            navigate("/");
+            //saco de la variable del contexto el id del usuario
+            const { id } = usuario.user;
+            //almaceno la variable con el id del usuario con el objetivo de presentarle la informacion personalizada
+            dispatch(sesionUsuario(id));
+            localStorage.setItem("usuario", id);
+          }
         }
       }
     }

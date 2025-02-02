@@ -13,7 +13,7 @@ $enlace = $_POST['enlace'];
 
 
 //mediante el post se creara el usuario automaticamente
-$chollo = new Chollo(0, $precio, $nombre, $descripcion, $enlace);
+$chollo = new Chollo(0, $precio, $nombre, $descripcion, $enlace = "");
 
 try {
 

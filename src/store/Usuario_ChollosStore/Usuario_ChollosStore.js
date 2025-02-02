@@ -6,7 +6,7 @@ import {
   compraDeUsuario,
 } from "./thunk";
 
-const initialState = { loading: null, listData: [], data: null };
+const initialState = { loading: null, listData: [], data: null, status: null };
 
 const setLoading = (state) => {
   state.loading = true;
@@ -23,7 +23,7 @@ const Usuario_ChollosSice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(devolution.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.status = action.payload;
         unsetLoading(state);
       })
       .addCase(selectOneProcedimiento.fulfilled, (state, action) => {
