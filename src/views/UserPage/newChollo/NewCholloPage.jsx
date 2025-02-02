@@ -3,6 +3,7 @@ import "./NewCholloPage.css"; // Importamos los estilos personalizados
 import { useDispatch } from "react-redux";
 import { insertarChollo } from "../../../store/chollosStore/thunk";
 import { useForm } from "../../../hooks/useForm";
+import { useNavigate } from "react-router";
 
 export const NewCholloPage = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,12 @@ export const NewCholloPage = () => {
     formState,
     onInputChange,
   } = useForm();
+  const navigate = useNavigate();
 
   const onhandleSubmit = (e) => {
     e.preventDefault();
     dispatch(insertarChollo(formState));
+    navigate();
   };
 
   return (
