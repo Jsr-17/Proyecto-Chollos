@@ -28,7 +28,7 @@ try {
         $correo,
         $username,
         $contrasenya,
-        (bool)$admin
+        (bool) $admin
     );
 
 

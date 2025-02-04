@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// 📌 Acción asíncrona para obtener chollos desde PHP
 export const fetchChollos = createAsyncThunk(
   "chollos/fetchChollos",
   async () => {
