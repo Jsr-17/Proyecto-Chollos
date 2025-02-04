@@ -1,4 +1,5 @@
 <?php
+
 //Modelo de datos que se basarán todos los chollos o productos de la página web
 class Chollo
 {

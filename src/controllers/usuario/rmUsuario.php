@@ -11,25 +11,6 @@ try {
 
 
     $id = $_POST['id'];
-    $edad = $_POST['edad'];
-    $nombre = $_POST['nombre'];
-    $correo = $_POST['correo'];
-    $username = $_POST['username'];
-    $contrasenya = $_POST['contrasenya'];
-    $admin = $_POST['admin'];
-
-
-    //mediante el post se creara el usuario automaticamente
-    $usuario = new Usuario(
-        $id,
-        $edad,
-        $nombre,
-        $correo,
-        $username,
-        $contrasenya,
-        (bool)$admin
-    );
-
 
 
     //conexion tanto en la variable como en la  clase con la base de datos 
@@ -42,9 +23,15 @@ try {
 
 
     //llamamos al metodo de la clase mapper encargada de eliminar al usuario
-    UsuariosMapper::remove($usuario);
+    UsuariosMapper::remove($id);
 
-    echo "consulta realizada";
+    $response = array(
+        "status" => "success",
+        "message" => "El usuario ha sido eliminado correctamente."
+    );
+
+    // Convertir el array a JSON y devolverlo
+    echo json_encode($response);
 } catch (Throwable $th) {
     throw $th;
 }

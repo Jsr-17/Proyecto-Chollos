@@ -1,37 +1,43 @@
 import React, { useEffect, useState } from "react";
 import "./NewCholloPage.css"; // Importamos los estilos personalizados
+import { useDispatch } from "react-redux";
+import { insertarChollo } from "../../../store/chollosStore/thunk";
+import { useForm } from "../../../hooks/useForm";
+import { useNavigate } from "react-router";
 
 export const NewCholloPage = () => {
-  const [contador, setContador] = useState(0);
-  const [parar, setParar] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    precio = "",
+    nombre = "",
+    descripcion = "",
+    formState,
+    onInputChange,
+  } = useForm();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (parar) return;
-    const paco = setInterval(() => setContador(contador + 1), 1000);
-
-    return () => {
-      clearInterval(paco);
-      console.log("pito");
-    };
-  });
+  const onhandleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(insertarChollo(formState));
+    navigate();
+  };
 
   return (
     <>
       <h1 className="text-center my-4 title"> Crea Tu Nuevo Chollo </h1>
-      <button onClick={() => (parar ? setParar(false) : setParar(true))}>
-        pulsame
-      </button>
 
       <div className="container d-flex justify-content-center align-items-center">
-        <form className="chollo-form">
+        <form className="chollo-form" onSubmit={onhandleSubmit}>
           <div className="mb-4">
-            <label className="form-label">Nombre del Chollo {contador}</label>
+            <label className="form-label">Nombre del Chollo </label>
             <input
               type="text"
               className="form-control"
               id="nameChollo"
-              name="nameChollo"
+              name="nombre"
+              value={nombre}
               placeholder="Ejemplo: Descuento en Amazon"
+              onChange={onInputChange}
             />
           </div>
 
@@ -43,6 +49,9 @@ export const NewCholloPage = () => {
               maxLength="500"
               className="form-control"
               id="descripcion"
+              name="descripcion"
+              value={descripcion}
+              onChange={onInputChange}
             ></textarea>
           </div>
 
@@ -54,6 +63,9 @@ export const NewCholloPage = () => {
               id="precio"
               placeholder="Ejemplo: 19.99"
               min={1}
+              name="precio"
+              value={precio}
+              onChange={onInputChange}
             />
           </div>
 

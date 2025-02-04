@@ -1,4 +1,5 @@
 <?php
+include "DataMapper.php";
 //Clase encargada de exportar de manera estática todos los metodos que son relacionados con las consultas a la tabla de chollos de la base de datos
 class ChollosMapper extends DataMapper
 {
@@ -10,7 +11,7 @@ class ChollosMapper extends DataMapper
         //que así se autoincremente en la base de datos 
 
         $st = self::$db->prepare(
-            "insert into Chollos set
+            "insert into Chollo set
             precio = :precio,
             nombre = :nombre,
             descripcion=:descripcion,
@@ -25,20 +26,20 @@ class ChollosMapper extends DataMapper
         ));
     }
     //Función estática ::  
-    public static function remove(Chollo $chollo)
+    public static function remove($id)
     {
         //self::$db atributo estatico que referencia conexión base de datos
         $el = self::$db->prepare(
-            "Delete from Chollos where id= :id"
+            "Delete from Chollo where id= :id"
         );
         //Se coloca un array asociativo la cual relaciona el atributo del objeto con el index del anterior array 
         //los : indican el valor que tomara el array asociativo por lo que deben de ser igual arriba y abajo
-        $el->execute([":id" => $chollo->getId()]);
+        $el->execute([":id" => $id]);
     }
     public static function updateAll(Chollo $chollo)
     {
         //-> es la funcion de la clase PDO
-        $el = self::$db->prepare("UPDATE Chollos SET precio = :precio, nombre = :nombre, descripcion = :descripcion, enlace = :enlace WHERE id = :id");
+        $el = self::$db->prepare("UPDATE Chollo SET precio = :precio, nombre = :nombre, descripcion = :descripcion, enlace = :enlace WHERE id = :id");
         $el->execute([
             ":id" => $chollo->getId(),
             ":precio" => $chollo->getPrecio(),
@@ -51,7 +52,7 @@ class ChollosMapper extends DataMapper
     public static function updateOne(Chollo $chollo, $columna, $valor)
     {
         $el = self::$db->prepare(
-            "UPDATE Chollos SET " . (string)$columna . " =:value  where id=:id"
+            "UPDATE Chollo SET " . (string)$columna . " =:value  where id=:id"
         );
         $el->execute([
             ":id" => $chollo->getId(),
@@ -60,19 +61,19 @@ class ChollosMapper extends DataMapper
     }
     public static function selectAll()
     {
-        $el = self::$db->prepare("Select * from Chollos");
+        $el = self::$db->prepare("Select * from Chollo");
         $el->execute();
         return $el->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function selectOne($value)
     {
-        $el = self::$db->prepare("Select * from Chollos where id=:id");
+        $el = self::$db->prepare("Select * from Chollo where id=:id");
         $el->execute([":id" => $value]);
         return $el->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function selectOneBy($columna, $value)
     {
-        $el = self::$db->prepare("Select * from Chollos where " . $columna . " = :value");
+        $el = self::$db->prepare("Select * from Chollo where " . $columna . " = :value");
         $el->execute([":value" => $value]);
         return $el->fetchAll(PDO::FETCH_ASSOC);
     }

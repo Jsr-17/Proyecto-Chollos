@@ -1,28 +1,16 @@
 import React, { useState } from "react";
+import { useFormValidator } from "../../../hooks/useFormValidator";
 
 export const RegisterPage = () => {
-  const [formData, setFormData] = useState({
-    edad: "",
-    nombre: "",
-    correo: "",
-    username: "",
-    contrasenya: "",
-    admin: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Datos enviados:", formData);
-    // Aquí puedes enviar los datos al backend
-  };
+  const {
+    username,
+    contrasenya,
+    correo,
+    edad,
+    nombre,
+    onInputChange,
+    handleSubmit,
+  } = useFormValidator();
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -38,8 +26,8 @@ export const RegisterPage = () => {
               type="text"
               className="form-control form-control-lg"
               name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
+              value={nombre}
+              onChange={onInputChange}
               required
             />
           </div>
@@ -50,8 +38,8 @@ export const RegisterPage = () => {
               type="email"
               className="form-control form-control-lg"
               name="correo"
-              value={formData.correo}
-              onChange={handleChange}
+              value={correo}
+              onChange={onInputChange}
               required
             />
           </div>
@@ -61,8 +49,8 @@ export const RegisterPage = () => {
               type="number"
               className="form-control form-control-lg"
               name="edad"
-              value={formData.edad}
-              onChange={handleChange}
+              value={edad}
+              onChange={onInputChange}
               required
               min={0}
             />
@@ -74,8 +62,8 @@ export const RegisterPage = () => {
               type="text"
               className="form-control form-control-lg"
               name="username"
-              value={formData.username}
-              onChange={handleChange}
+              value={username}
+              onChange={onInputChange}
               required
             />
           </div>
@@ -86,8 +74,8 @@ export const RegisterPage = () => {
               type="password"
               className="form-control form-control-lg"
               name="contrasenya"
-              value={formData.contrasenya}
-              onChange={handleChange}
+              value={contrasenya}
+              onChange={onInputChange}
               required
             />
           </div>

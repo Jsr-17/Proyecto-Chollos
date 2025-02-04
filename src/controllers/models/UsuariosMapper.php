@@ -25,7 +25,7 @@ class UsuariosMapper extends DataMapper
     }
 
     //funcion que realiza el borrado de la base de datos de un registro en concreto
-    public static function remove(Usuario $usuario)
+    public static function remove($id)
     {
         //prepara una sentencia sql en este caso de borrado por id
         $el = self::$db->prepare(
@@ -33,7 +33,7 @@ class UsuariosMapper extends DataMapper
         );
 
         //prepara la ejecución de la sentenci a sql
-        $el->execute([":id" => $usuario->getId()]);
+        $el->execute([":id" => $id]);
     }
 
     //funcion static que actualiza de un usuario todos los datos ya sean iguales o no es decir sustituye todos los valores del objeto que le pasamos por los mismos o diferentes del 
