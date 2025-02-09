@@ -1,0 +1,38 @@
+body {
+  background-color: #121212;
+}
+
+.hero {
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+.rounded {
+  border-radius: 16px;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8d210 !important; /* Amarillo dorado */
+}
+
+.btn-outline-light:hover {
+  background-color: #f8d210;
+  border-color: #f8d210;
+  color: black;
+}
+
+.register:hover {
+  color: #f8d210;
+}

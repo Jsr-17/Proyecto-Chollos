@@ -1,5 +1,6 @@
 <?php
 include "DataMapper.php";
+
 //Clase encargada de exportar de manera estática todos los metodos que son relacionados con las consultas a la tabla de chollos de la base de datos
 class ChollosMapper extends DataMapper
 {

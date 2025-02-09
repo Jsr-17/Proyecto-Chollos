@@ -29,7 +29,7 @@ try {
     );
 
     // Convertir el array a JSON y devolverlo
-    echo json_encode($response);
+    print_r($response);
 } catch (Throwable $th) {
     throw $th;
 }

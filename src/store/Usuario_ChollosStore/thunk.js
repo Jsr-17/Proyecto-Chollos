@@ -60,6 +60,7 @@ export const compraDeUsuario = createAsyncThunk(
     data.append("id_usuario", id_usuario);
     data.append("id_chollo", id_chollo);
     data.append("fecha", fecha);
+
     const response = await fetch(
       "http://localhost:8080/usuario_chollo/usuario_Buy.php",
       {
@@ -70,7 +71,7 @@ export const compraDeUsuario = createAsyncThunk(
         body: data.toString(),
       }
     );
-    console.log(response);
+    console.log(await response.text());
 
     return response.json();
   }
