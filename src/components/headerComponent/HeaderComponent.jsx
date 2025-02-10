@@ -26,10 +26,10 @@ export const HeaderComponent = () => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-body-tertiary"
+        className="navbar navbar-expand-lg p-3 m-2 border border-2 border-white"
         data-bs-theme="dark"
       >
-        <div className="container-fluid">
+        <div className="container-fluid ">
           <Link className="navbar-brand" to={"/"}>
             Tienda de Chollos
           </Link>
@@ -44,7 +44,10 @@ export const HeaderComponent = () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse bg-gray"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to={"/"}>
@@ -86,7 +89,7 @@ export const HeaderComponent = () => {
             {!mobile && (
               <form className="d-flex w-25 mb-1" role="search">
                 <input
-                  className="form-control me-2"
+                  className="form-control me-2 "
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
@@ -94,21 +97,18 @@ export const HeaderComponent = () => {
               </form>
             )}
             <button
-              className="btn btn-outline-secondary mx-2"
+              className="btn btn-outline-light mx-2"
               type="button"
               onClick={() => console.log(usuarioSesion)}
             >
               Ver Carrito
             </button>
             {!existe && !usuarioSesion ? (
-              <Link className="btn btn-outline-secondary" to="/auth/login">
+              <Link className="btn btn-outline-light" to="/auth/login">
                 Login
               </Link>
             ) : (
-              <Link
-                className="btn btn-outline-secondary"
-                onClick={handleLogout}
-              >
+              <Link className="btn btn-outline-light" onClick={handleLogout}>
                 Logout
               </Link>
             )}

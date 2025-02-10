@@ -19,6 +19,24 @@ export const DeleteChollosPage = () => {
 
   return (
     <>
+      <div className="d-flex justify-content-center aling-items-center my-4">
+        <h1 className="text-center my-3 text-white py-3 bg-dark w-50 ">
+          Estos son tus chollos , elimina uno!!
+        </h1>
+      </div>
+
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
+        {Object.values(data).map((el) => (
+          <ContenedorComponent
+            onHandleClickId={() => {
+              dispatch(devolution(el.id));
+              setElimina(true);
+            }}
+            key={el.id_chollo + Math.random()}
+            {...el}
+          />
+        ))}
+      </div>
       <h1 className="text-center my-3">
         Estos son tus chollos , elimina uno!!
       </h1>

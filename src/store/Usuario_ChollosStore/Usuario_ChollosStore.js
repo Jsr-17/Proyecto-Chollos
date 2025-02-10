@@ -35,7 +35,7 @@ const Usuario_ChollosSice = createSlice({
         unsetLoading(state);
       })
       .addCase(compraDeUsuario.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.listData = action.payload;
         unsetLoading(state);
       })
       .addMatcher((action) => action.type.endsWith("/pending"), setLoading)

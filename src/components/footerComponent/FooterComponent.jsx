@@ -17,23 +17,21 @@ export const FooterComponent = () => {
                 <use xlinkHref="#bootstrap" />
               </svg>
             </a>
-            <span className="mb-3 mb-md-0 text-body-secondary">
-              © 2024 Company, Inc
-            </span>
+            <span className="mb-3 mb-md-0 text-white">© 2024 Company, Inc</span>
           </div>
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li className="ms-3">
-              <a className="text-body-secondary" href="#">
+              <a className="text-white" href="#">
                 <FaXTwitter />
               </a>
             </li>
             <li className="ms-3">
-              <a className="text-body-secondary" href="#">
+              <a className="text-white" href="#">
                 <FaInstagram />
               </a>
             </li>
             <li className="ms-3">
-              <a className="text-body-secondary" href="#">
+              <a className="text-white" href="#">
                 <AiOutlineFacebook />
               </a>
             </li>
