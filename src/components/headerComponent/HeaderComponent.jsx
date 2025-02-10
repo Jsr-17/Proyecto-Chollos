@@ -17,6 +17,7 @@ export const HeaderComponent = () => {
 
     return () => window.removeEventListener("resize", handleMobile);
   }, [mobile]);
+
   const handleLogout = () => {
     localStorage.removeItem("usuario");
     window.location.reload();

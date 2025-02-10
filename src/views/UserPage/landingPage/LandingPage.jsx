@@ -23,6 +23,7 @@ export const LandingPage = () => {
 
     if (!usuarioSesion) {
       dispatch(sesionUsuario(localStorage.getItem("usuario")));
+      console.log(localStorage.getItem("usuario"));
       dispatch(selectOneProcedimiento(localStorage.getItem("usuario")));
     } else {
       dispatch(selectOneProcedimiento(usuarioSesion));

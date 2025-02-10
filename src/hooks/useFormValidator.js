@@ -7,7 +7,6 @@ import {
 } from "../store/usuarioStore/thunk";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { FaLeaf } from "react-icons/fa";
 
 const initialState = {
   username: "",
@@ -65,6 +64,7 @@ export const useFormValidator = () => {
         ).unwrap();
 
         dispatch(sesionUsuario(usuarioNuevo[0].id));
+        localStorage.setItem("usuario", usuarioNuevo[0].id);
       }
     } catch (error) {
       console.error("Error en la petición:", error);

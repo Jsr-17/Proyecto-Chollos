@@ -10,7 +10,8 @@ class Usuario
         private string $username,
         private string $contrasenya,
         private bool $admin
-    ) {}
+    ) {
+    }
     // Getters
     public function getId(): int
     {

@@ -22,18 +22,23 @@ export const DeleteChollosPage = () => {
       <h1 className="text-center my-3">
         Estos son tus chollos , elimina uno!!
       </h1>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
-        {Object.values(data).map((el) => (
-          <ContenedorComponent
-            onHandleClickId={() => {
-              dispatch(devolution(el.id));
-              setElimina(true);
-            }}
-            key={el.id_chollo + Math.random()}
-            {...el}
-          />
-        ))}
-      </div>
+
+      {data == null ? (
+        <h1>No hay chollos que borrar</h1>
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
+          {Object.values(data).map((el) => (
+            <ContenedorComponent
+              onHandleClickId={() => {
+                dispatch(devolution(el.id));
+                setElimina(true);
+              }}
+              key={el.id_chollo + Math.random()}
+              {...el}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };

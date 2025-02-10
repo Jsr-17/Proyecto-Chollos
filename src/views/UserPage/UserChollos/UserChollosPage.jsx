@@ -22,17 +22,22 @@ export const UserChollosPage = () => {
           </div>
         </div>
       </div>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
-        {Object.values(data).map((el) => (
-          <ContenedorComponent
-            onHandleClickId={() => {
-              console.log(el.id_chollo);
-            }}
-            key={el.id_chollo + Math.random()}
-            {...el}
-          />
-        ))}
-      </div>
+
+      {data == null ? (
+        <h1>No hay Chollos</h1>
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mx-2">
+          {Object.values(data).map((el) => (
+            <ContenedorComponent
+              onHandleClickId={() => {
+                console.log(el.id_chollo);
+              }}
+              key={el.id_chollo + Math.random()}
+              {...el}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
