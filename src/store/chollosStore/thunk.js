@@ -14,31 +14,37 @@ export const obtenerChollos = createAsyncThunk(
 //funcion encagada de crear un chollo
 export const insertarChollo = createAsyncThunk(
   "chollos/insertarChollo",
-  //Función anónima encargada de realizar la función fetch en este caso es un post
-  //recibe un objeto desestructurado con los atributos del objeto que necesita el backend
-  async ({ precio, nombre, descripcion, enlace }) => {
-    // crea un Objeto de url cual almacena los datos en array aasocitivo como POST
-    const datos = new URLSearchParams();
-    datos.append("precio", precio);
-    datos.append("nombre", nombre);
-    datos.append("descripcion", descripcion);
-    datos.append("enlace", enlace);
+  async ({ formState, file }) => {
+    const { precio, nombre, descripcion } = formState;
 
-    // El fetch en la versión post
-    const response = await fetch(
-      "http://localhost:8080/chollos/addChollo.php",
-      {
-        //metodo que he utilizado
-        method: "POST",
-        //cabeceras que contiene para enviar al peticion
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        //datos que recibe en este caso recibe los datos del objeto
-        body: datos.toString(),
-      }
-    );
-    return response.json();
+    console.log("Archivo recibido en Thunk:", file);
+
+    const formData = new FormData();
+    formData.append("precio", precio);
+    formData.append("nombre", nombre);
+    formData.append("descripcion", descripcion);
+
+    if (file) {
+      formData.append("enlace", file);
+    }
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/chollos/addChollo.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const responseData = await response.text();
+      console.log("Respuesta del servidor:", responseData);
+
+      return JSON.parse(responseData);
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      throw error;
+    }
   }
 );
 

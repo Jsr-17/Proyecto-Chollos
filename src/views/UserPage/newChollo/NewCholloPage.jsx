@@ -6,7 +6,11 @@ import { useForm } from "../../../hooks/useForm";
 import { useNavigate } from "react-router";
 
 export const NewCholloPage = () => {
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
+  const handleObtenArchivo = (e) => {
+    setFile(e.target.files[0]);
+  };
   const {
     precio = "",
     nombre = "",
@@ -14,12 +18,19 @@ export const NewCholloPage = () => {
     formState,
     onInputChange,
   } = useForm();
+
+  const datosEnviar = {
+    formState: formState,
+    file: file,
+  };
+
   const navigate = useNavigate();
 
   const onhandleSubmit = (e) => {
     e.preventDefault();
-    dispatch(insertarChollo(formState));
-    navigate();
+
+    dispatch(insertarChollo(datosEnviar));
+    //navigate("/");
   };
 
   return (
@@ -70,6 +81,15 @@ export const NewCholloPage = () => {
               name="precio"
               value={precio}
               onChange={onInputChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="form-label text-white">Imagen del Chollo</label>
+            <input
+              type="file"
+              className="form-control"
+              onChange={handleObtenArchivo}
+              accept="image/*"
             />
           </div>
           <div className="justify-content-center align-items-center d-flex my-3 p-2">

@@ -70,7 +70,8 @@ class Usuario_ChollosMapper extends DataMapper
     Usuario.admin,
     Chollo.precio,
     Chollo.nombre AS nombre_Chollo,
-    Chollo.descripcion
+    Chollo.descripcion,
+    Chollo.enlace
 FROM 
     Usuario_Chollo
 INNER JOIN 

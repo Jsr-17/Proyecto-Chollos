@@ -7,11 +7,8 @@ import {
   compraDeUsuario,
   selectOneProcedimiento,
 } from "../../../store/Usuario_ChollosStore/thunk";
-import {
-  obtenerUsuarioId,
-  sesionUsuario,
-} from "../../../store/usuarioStore/thunk";
-import img from "../../../assets/imgEj.webp";
+import { sesionUsuario } from "../../../store/usuarioStore/thunk";
+import img from "../../../assets/pc.webp";
 import { obtenerFechaSQL } from "../../../hooks/obtenerFecha";
 
 export const LandingPage = () => {
@@ -45,7 +42,6 @@ export const LandingPage = () => {
     };
 
     dispatch(compraDeUsuario(dato));
-    dispatch(selectOneProcedimiento(usuarioSesion));
   };
 
   return (

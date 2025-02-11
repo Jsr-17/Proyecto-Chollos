@@ -1,16 +1,21 @@
 import React from "react";
-import img from "../../../../assets/imgEj.webp";
+const img = "src/controllers/chollos/";
 
 export const ContenedorComponent = ({
   nombre,
   precio,
   descripcion,
+  enlace,
   onHandleClickId,
 }) => {
   return (
     <div className="col">
       <div className="card text-center p-3 bg-secondary h-100 text-white">
-        <img src={img} className="card-img-top    img-fluid" alt={img} />
+        <img
+          src={img.concat(enlace)}
+          className="card-img-top    img-fluid"
+          alt={enlace}
+        />
         <div className="card-body mt-2 ">
           <h5 className="card-title">{nombre}</h5>
           <p className="card-text m-3">{descripcion}</p>

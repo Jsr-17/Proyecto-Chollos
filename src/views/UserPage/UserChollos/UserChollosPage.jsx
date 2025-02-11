@@ -1,9 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ContenedorComponent } from "./components/ContenedorComponent";
+import { selectOneProcedimiento } from "../../../store/Usuario_ChollosStore/thunk";
 
 export const UserChollosPage = () => {
+  const dispatch = useDispatch();
+
+  const { usuarioSesion, usuario, loading } = useSelector(
+    (state) => state.usuarios
+  );
+
   const { data } = useSelector((state) => state.user_chollo);
+  useEffect(() => {
+    dispatch(selectOneProcedimiento(usuarioSesion));
+  }, []);
+
   return (
     <>
       <div className="d-flex justify-content-center aling-items-center">
